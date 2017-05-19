@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.css'/>
+  </head>
+  <body>
+    <div class="container-fluid">
+        <div clamenu-ss="row">
+            <div class="col-sm-2" > <h2>menu-ember</h2> <div id="menu-ember"></div></div>
+            <div class="col-sm-2" > <h2>menu-footer</h2> <div id="menu-footer"></div></div>
+            <div class="col-sm-2" > <h2>menu-menu-legal</h2> <div id="menu-legal"></div></div>
+            <div class="col-sm-2" > <h2>menu-global-footer</h2> <div id="menu-global-footer"></div></div>
+            <div class="col-sm-2" > <h2>menu-social-foote</h2> <div id="menu-social-footer"></div></div>
+            <div class="col-sm-2" > <h2>menu-menu-news</h2> <div id="menu-news"></div></div>
+            <div class="col-sm-2" > <h2>menu-home-quick-links</h2> <div id="menu-home-quick-links"></div></div>
+        </div>
+
+    </div>
+  </body>
+
+  <script>
+    ulStr = "";
+    function getTree (data){
+        function tree(data) {    
+            ulStr += '<ul>';
+                for (var i in data){
+                        ulStr += '<li>' + data[i].title;
+                        // console.log (data[i])
+                        if (data[i].has_children){
+                            tree(data[i].children)
+                        }
+                            ulStr += "</ul>";
+                }
+                return ulStr;
+        }
+        var ulStr = "";
+        return  tree(data);
+   }
+
+    // jQuery.getJSON( "http://localhost:4567/url?url=https://www.qualcomm.com/api/menus", function( data ) {
+    jQuery.getJSON( "https://desolate-stream-50260.herokuapp.com/proxy?url=https://www.qualcomm.com/api/menus", function( data ) {
+    // jQuery.getJSON( "https://www.qualcomm.com/api/menus", function( data ) {
+        // console.log (data)
+        $('#menu-ember').append(getTree(data[0].items));
+        $('#menu-footer').append(getTree(data[1].items));
+        $('#menu-legal').append(getTree(data[2].items));
+        $('#menu-global-footer').append(getTree(data[3].items));
+        $('#menu-social-footer').append(getTree(data[4].items));
+        $('#menu-news').append(getTree(data[5].items));
+        $('#menu-home-quick-links').append(getTree(data[6].items));
+    });
+
+  </script>
+</html>
