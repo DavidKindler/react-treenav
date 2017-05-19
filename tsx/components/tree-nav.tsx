@@ -19,6 +19,16 @@ export default class TreeNav extends Component < MyProps, MyState > {
         }
         });
     }
+  
+  handleClick(e) {
+    if ( !e.target.className.includes('list-anchor') ) return;
+    if ( e.target.className.includes('contracted') ) {
+      e.target.className = 'list-anchor expanded'
+    } else {
+      e.target.className = 'list-anchor contracted'
+    }
+
+  }
 
 
   mapStructure(nodes) {
@@ -30,14 +40,16 @@ export default class TreeNav extends Component < MyProps, MyState > {
               {self.mapStructure(node.children)}
             </ul>
           )
-        } else {
-          return node.data
         }
       }
       return nodes.map(node => {        
         return ( 
-         <li key={node.attr.id} className="list-anchor">
-          {node.data}
+         <li key={node.attr.id} className={node.children.length > 0 ? 'list-anchor contracted' : 'no-children'} onClick={(e) => {
+           e.stopPropagation();
+           this.handleClick(e);
+         }}>
+          <span className={node.children.length > 0 ? 'hit-area' : ''} />
+          <a href={node.attr.webpageUrl}> {node.data} </a>
           {getChild(node)} 
          </li>
         );
