@@ -49,13 +49,17 @@ li.no-children {
 
 .list-anchor { max-height: 100vh; }
 .list-anchor.contracted > ul { 
-   transition: opacity 100ms linear;
+   transition: all 100ms linear;
    max-height: 0;
+   /*overflow: hidden;*/
    opacity: 0;
+   visibility: hidden;
 }
 
 .list-anchor.expanded > ul {
-    max-height: auto;
+    /*max-height: auto;*/
+    max-height: 100vh;
     opacity: 1;
+    visibility: visible;
 }
 

@@ -8,7 +8,7 @@ export default class TreeNav extends Component < MyProps, MyState > {
   constructor(props) {
     super(props)
     this.state = {
-      data: props.data
+      data: []
     };
   }
 
@@ -27,7 +27,6 @@ export default class TreeNav extends Component < MyProps, MyState > {
     } else {
       e.target.className = 'list-anchor contracted'
     }
-
   }
 
 
