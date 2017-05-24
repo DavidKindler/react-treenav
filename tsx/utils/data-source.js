@@ -1,6 +1,5 @@
-
-const dataSource = 
-{
+export default function(){
+return {
         "data": "Products",
         "children": [
             {
@@ -5106,7 +5105,6 @@ const dataSource =
                 "children": []
             }
         ]
+    }
+
 }
-
-
-export default dataSource;

@@ -9,7 +9,7 @@ interface MyState {
   treeData: any[]
 }
 
-const data = dataSource;
+const data = dataSource();
 
 class Root extends Component<MyProps, MyState> {
    constructor(props){

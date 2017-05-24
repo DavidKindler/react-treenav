@@ -43,7 +43,8 @@ export default class TreeNav extends Component < MyProps, MyState > {
       }
       return nodes.map(node => {        
         return ( 
-         <li key={node.attr.id} className={node.children.length > 0 ? 'list-anchor contracted' : 'no-children'} onClick={(e) => {
+         <li key={node.attr.id} className={node.children.length > 0 ? 'list-anchor contracted' : 'no-children'} 
+           onClick={(e) => {
            e.stopPropagation();
            this.handleClick(e);
          }}>
